@@ -7,10 +7,17 @@ namespace ThePetStore.Pets
     class Turtle
     {
         //Properties - externally consumable things
-        public string Name {get; set;}
+
+        //read only property  --  they can only be set once and in the constuctor/instantiaion process and no where else
+        public string Name { get; } = "Yertle";  //instantiation
         public string Size { get; set; }
-        public int Age { get; set; }
+
+        //public property with a private setter
+        public int Age { get; private set; }
         public string Color { get; set; }
+
+        //read only property, but can only be calculated/derived, can't be set
+        public string Description => $"{Age} year old {Size}, {Color} turtle.";
 
         //Fields - internal private things
         private bool _isHungry = true;
@@ -45,6 +52,10 @@ namespace ThePetStore.Pets
             else
             {
                 Console.WriteLine("No occasion...");
+            }
+            if (occasion == "birthday")
+            {
+                Console.WriteLine($"{Name} is now {++Age} years old!");
             }
             DressUp("tie");
         }
